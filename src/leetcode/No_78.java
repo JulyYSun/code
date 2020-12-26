@@ -10,25 +10,20 @@ import java.util.Stack;
  */
 
 public class No_78 {
-    public static List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result=new ArrayList<>();
-        List<Integer> item=new ArrayList<>();
-        result.add(item);
-        generate(0,nums,item,result);
-        return result;
+    List<List<Integer>> res=new ArrayList<>();
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<Integer> track=new ArrayList<>();
+        backTrack(nums,track,0);
+        return res;
     }
-    static void generate(int i,int[] nums,List<Integer> item,List<List<Integer>> result){
-        if(i>=nums.length){
-            return;
+    void backTrack(int[] nums,List<Integer> track,int start){
+        res.add(new ArrayList<>(track));
+        for(int i=start;i< nums.length;i++){
+            track.add(nums[i]);
+            backTrack(nums,track,i+1);
+            track.remove(track.size()-1);
         }
-        item.add(nums[i]);
-        result.add(item);
-        generate(i+1,nums,item,result);
-        item.remove(item.size()-1);
-        generate(i+1,nums,item,result);
     }
 
-    public static void main(String[] args) {
-        System.out.println(subsets(new int[]{1,2,3}));
-    }
 }
