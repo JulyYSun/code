@@ -1,0 +1,2 @@
+# code
+leetcode and nowcoder
